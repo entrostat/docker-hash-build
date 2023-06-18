@@ -1,6 +1,7 @@
 import { Args, Command, Flags } from "@oclif/core";
 import { plainToInstance } from "class-transformer";
 import { DockerBuildOptions } from "../models/docker-build-options";
+import { rawToDockerBuildOptions } from "../shared/raw-to-docker-build-options";
 
 export default class Build extends Command {
   static description =
@@ -95,15 +96,6 @@ export default class Build extends Command {
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(Build);
 
-    const dockerBuildOptions = plainToInstance(
-      DockerBuildOptions,
-      {
-        ...flags,
-        ...args,
-      },
-      {
-        strategy: "excludeAll",
-      },
-    );
+    const dockerBuildOptions = rawToDockerBuildOptions(flags, args);
   }
 }
