@@ -1,9 +1,12 @@
-import { Args, Command, Flags } from "@oclif/core";
-import { plainToInstance } from "class-transformer";
-import { DockerBuildOptions } from "../models/docker-build-options";
+import "reflect-metadata";
+import { Args, Flags } from "@oclif/core";
 import { rawToDockerBuildOptions } from "../shared/raw-to-docker-build-options";
+import { container } from "tsyringe";
+import { HashService } from "../shared/hash.service";
+import { BaseCommand } from "../shared/base-command";
+import * as path from "path";
 
-export default class Build extends Command {
+export default class Build extends BaseCommand {
   static description =
     "Build a Docker image if the hash does not exist on the Docker registry.";
 
@@ -97,5 +100,16 @@ export default class Build extends Command {
     const { args, flags } = await this.parse(Build);
 
     const dockerBuildOptions = rawToDockerBuildOptions(flags, args);
+
+    const directories = [
+      ...dockerBuildOptions.watchDirectory,
+      dockerBuildOptions.directory,
+    ].map((d) => path.resolve("./", d));
+    const files = dockerBuildOptions.watchFile.map((f) =>
+      path.resolve("./", f),
+    );
+
+    const hashService = container.resolve(HashService);
+    const hash = await hashService.hash(directories, files);
   }
 }
