@@ -1,4 +1,6 @@
 import { Args, Command, Flags } from "@oclif/core";
+import { plainToInstance } from "class-transformer";
+import { DockerBuildOptions } from "../models/docker-build-options";
 
 export default class Build extends Command {
   static description =
@@ -18,11 +20,14 @@ export default class Build extends Command {
       char: "r",
       description:
         "The registry that should be used (by default Docker Hub is used)",
+      required: false,
     }),
     tag: Flags.string({
       char: "t",
       description:
         "The tag version that should be pushed to the registry so that it can be used in automated deployments. E.g. 'stable' or 'testing'",
+      multiple: true,
+      required: false,
     }),
     package: Flags.string({
       char: "p",
@@ -69,6 +74,14 @@ export default class Build extends Command {
       default: false,
       description: "Whether to push the latest tag to the registry",
     }),
+    platforms: Flags.string({
+      char: "P",
+      required: false,
+      default: ["linux/amd64"],
+      description: `The platforms that should be built for, e.g. "linux/amd64,linux/arm64"`,
+      options: ["linux/amd64", "linux/arm64", "linux/arm/v7", "linux/arm/v6"],
+      multiple: true,
+    }),
   };
 
   static args = {
@@ -81,5 +94,16 @@ export default class Build extends Command {
 
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(Build);
+
+    const dockerBuildOptions = plainToInstance(
+      DockerBuildOptions,
+      {
+        ...flags,
+        ...args,
+      },
+      {
+        strategy: "excludeAll",
+      },
+    );
   }
 }
