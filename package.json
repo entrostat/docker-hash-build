@@ -1,0 +1,83 @@
+{
+  "name": "hash-build",
+  "version": "0.0.0",
+  "description": "A CLI that optimises Docker builds by allowing you to \"check\" if something needs to be built before triggering the build.",
+  "author": "Kerren Ortlepp @Kerren-Entrostat",
+  "bin": {
+    "hash-build": "./bin/run"
+  },
+  "homepage": "https://github.com/entrostat/hash-build",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": "entrostat/hash-build",
+  "files": [
+    "/bin",
+    "/dist",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "dependencies": {
+    "@oclif/core": "^2",
+    "@oclif/plugin-help": "^5",
+    "@oclif/plugin-plugins": "^2.4.7"
+  },
+  "devDependencies": {
+    "@oclif/test": "^2.3.22",
+    "@types/chai": "^4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.18.36",
+    "chai": "^4",
+    "eslint": "^7.32.0",
+    "eslint-config-oclif": "^4",
+    "eslint-config-oclif-typescript": "^1.0.3",
+    "mocha": "^9",
+    "oclif": "^3",
+    "shx": "^0.3.3",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.5.3",
+    "typescript": "^4.9.5"
+  },
+  "oclif": {
+    "bin": "hash-build",
+    "dirname": "hash-build",
+    "commands": "./dist/commands",
+    "plugins": [
+      "@oclif/plugin-help"
+    ],
+    "topicSeparator": " ",
+    "topics": {}
+  },
+  "scripts": {
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "posttest": "yarn lint",
+    "prepack": "yarn build && oclif manifest && oclif readme",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif readme && git add README.md"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "bugs": "https://github.com/entrostat/hash-build/issues",
+  "keywords": [
+    "oclif",
+    "cli",
+    "docker",
+    "build",
+    "cache",
+    "hash",
+    "speed",
+    "improvement",
+    "continuous integration",
+    "continuous deployment",
+    "ci/cd",
+    "ci",
+    "cd",
+    "performance",
+    "pipeline",
+    "utility",
+    "tool"
+  ],
+  "types": "dist/index.d.ts"
+}
