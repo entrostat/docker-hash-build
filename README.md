@@ -334,3 +334,18 @@ DESCRIPTION
   Update installed plugins.
 ```
 <!-- commandsstop -->
+
+
+# Getting Started
+
+To develop on the project, clone it and run:
+
+```shell
+make init
+```
+
+If you have `zsh` you can use `autoenv` to automatically use the `node` environment set up for you. Otherwise, you'll have to run:
+
+```shell
+source .nodeenv/bin/activate
+```
