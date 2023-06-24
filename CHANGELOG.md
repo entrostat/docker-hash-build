@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [3.0.2](https://github.com/entrostat/docker-hash-build/compare/v3.0.0...v3.0.2) (2023-06-24)
+
+
+### Bug Fixes
+
+* **cache:** I didn't plug the buildx changes into the build command ([9a2f9f6](https://github.com/entrostat/docker-hash-build/commit/9a2f9f6fa86f69d28607f3157905bfa2a547d243))
+
 ## [3.0.0-alpha.0](https://github.com/entrostat/docker-hash-build/compare/v2.1.2...v3.0.0-alpha.0) (2023-06-24)
 
 
