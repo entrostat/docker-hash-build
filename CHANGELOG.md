@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [2.1.2](https://github.com/entrostat/docker-hash-build/compare/v2.1.1...v2.1.2) (2023-06-24)
+
+
+### Bug Fixes
+
+* **image-name:** The registry was being inserted twice when you specify the registry. The image name generator includes the registry so there is no need to add it again. ([f2fd763](https://github.com/entrostat/docker-hash-build/commit/f2fd763071aca49b30b74078cfbaa491307530a7))
+
 ### [2.1.1](https://github.com/entrostat/docker-hash-build/compare/v2.1.0...v2.1.1) (2023-06-24)
 
 
