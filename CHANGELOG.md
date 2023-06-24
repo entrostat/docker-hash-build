@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
-### [1.0.2](https://github.com/entrostat/hash-build/compare/v1.0.1...v1.0.2) (2023-06-24)
+## [2.0.0](https://github.com/entrostat/docker-hash-build/compare/v1.0.2...v2.0.0) (2023-06-24)
 
-### [1.0.1](https://github.com/entrostat/hash-build/compare/v1.0.0...v1.0.1) (2023-06-24)
+
+### Bug Fixes
+
+* **naming:** Adjusted the name of hash-build to docker-hash-build because NPMjs claims it's too similar to hashbuild which already exists ([d43afba](https://github.com/entrostat/docker-hash-build/commit/d43afba4c051e1e33feec007e8382c73decb05a7))
+
+### [1.0.2](https://github.com/entrostat/hdocker-hash-build/compare/v1.0.1...v1.0.2) (2023-06-24)
+
+### [1.0.1](https://github.com/entrostat/hdocker-hash-build/compare/v1.0.0...v1.0.1) (2023-06-24)

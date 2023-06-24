@@ -28,4 +28,4 @@ COPY --from=builder /app/oclif.manifest.json ./oclif.manifest.json
 
 RUN yarn link
 
-ENTRYPOINT ["hash-build"]
+ENTRYPOINT ["docker-hash-build"]

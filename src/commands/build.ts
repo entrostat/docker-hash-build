@@ -10,15 +10,15 @@ export default class Build extends BaseCommand {
     "Build a Docker image if the hash does not exist on the Docker registry.";
 
   static examples = [
-    `<%= config.bin %> <%= command.id %> . --image-name=kerren/hash-build --platforms=linux/amd64 --platforms=linux/arm64`,
-    `<%= config.bin %> <%= command.id %> ./path/to/repo --image-name=kerren/hash-build`,
-    `<%= config.bin %> <%= command.id %> . --image-name=kerren/hash-build --dockerfile-path=./Dockerfile.stable`,
-    `<%= config.bin %> <%= command.id %> . --image-name=kerren/hash-build --tag=staging`,
-    `<%= config.bin %> <%= command.id %> . --image-name=kerren/hash-build --tag=stable --latest`,
-    `<%= config.bin %> <%= command.id %> . --image-name=kerren/hash-build --watch-file=./yarn.lock`,
-    `<%= config.bin %> <%= command.id %> . --image-name=kerren/hash-build --watch-directory=./src`,
-    `<%= config.bin %> <%= command.id %> . --image-name=kerren/hash-build --watch-directory=./src --watch-file=./yarn.lock`,
-    `<%= config.bin %> <%= command.id %> . --image-name=kerren/hash-build --docker-username=username --docker-password=password --registry=registry.example.com`,
+    `<%= config.bin %> <%= command.id %> . --image-name=kerren/docker-hash-build --platforms=linux/amd64 --platforms=linux/arm64`,
+    `<%= config.bin %> <%= command.id %> ./path/to/repo --image-name=kerren/docker-hash-build`,
+    `<%= config.bin %> <%= command.id %> . --image-name=kerren/docker-hash-build --dockerfile-path=./Dockerfile.stable`,
+    `<%= config.bin %> <%= command.id %> . --image-name=kerren/docker-hash-build --tag=staging`,
+    `<%= config.bin %> <%= command.id %> . --image-name=kerren/docker-hash-build --tag=stable --latest`,
+    `<%= config.bin %> <%= command.id %> . --image-name=kerren/docker-hash-build --watch-file=./yarn.lock`,
+    `<%= config.bin %> <%= command.id %> . --image-name=kerren/docker-hash-build --watch-directory=./src`,
+    `<%= config.bin %> <%= command.id %> . --image-name=kerren/docker-hash-build --watch-directory=./src --watch-file=./yarn.lock`,
+    `<%= config.bin %> <%= command.id %> . --image-name=kerren/docker-hash-build --docker-username=username --docker-password=password --registry=registry.example.com`,
   ];
 
   static flags = {
