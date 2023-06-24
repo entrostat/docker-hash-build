@@ -34,7 +34,7 @@ $ npm install -g docker-hash-build
 $ docker-hash-build COMMAND
 running command...
 $ docker-hash-build (--version)
-docker-hash-build/2.1.2 linux-x64 node-v20.3.0
+docker-hash-build/3.0.0-alpha.0 linux-x64 node-v20.3.0
 $ docker-hash-build --help [COMMAND]
 USAGE
   $ docker-hash-build COMMAND
@@ -63,34 +63,41 @@ Build a Docker image if the hash does not exist on the Docker registry.
 USAGE
   $ docker-hash-build build DIRECTORY -i <value> [-f <value>] [-r <value>] [-t <value>] [-p <value>] [-w
     <value>] [-W <value>] [-b <value>] [-u <value>] [-P <value>] [-l] [-P
-    linux/amd64|linux/arm64|linux/arm/v7|linux/arm/v6]
+    linux/amd64|linux/arm64|linux/arm/v7|linux/arm/v6] [-x <value>]
 
 ARGUMENTS
   DIRECTORY  The directory that represents the "context" for your docker build
 
 FLAGS
-  -P, --docker-password=<value>        The password for logging into the docker repository (mainly for if you are
-                                       running this build process inside a container and have not logged docker in yet)
-  -P, --platforms=<option>...          [default: linux/amd64] The platforms that should be built for, e.g.
-                                       "linux/amd64,linux/arm64"
-                                       <options: linux/amd64|linux/arm64|linux/arm/v7|linux/arm/v6>
-  -W, --watch-file=<value>...          Files that should be watched to trigger the build. Note, if you set this then it
-                                       IGNORES the build directory so you'd have to add that here as well.
-  -b, --docker-build-flags=<value>...  Any additional build flags that you would like to plug directly into the Docker
-                                       build command
-  -f, --dockerfile-path=<value>        The path to the Dockerfile, if not specified, it's assumed that the file is in
-                                       the context directory
-  -i, --image-name=<value>             (required) The name of the image that should be built
-  -l, --latest                         Whether to push the latest tag to the registry
-  -p, --package=<value>                [default: ./package.json] The path to the package.json that holds the version of
-                                       the build, the default is the package.json in the directory the CLI is run from.
-  -r, --registry=<value>               The registry that should be used (by default Docker Hub is used)
-  -t, --tag=<value>...                 The tag version that should be pushed to the registry so that it can be used in
-                                       automated deployments. E.g. 'stable' or 'testing'
-  -u, --docker-username=<value>        The username for logging into the docker repository (mainly for if you are
-                                       running this build process inside a container and have not logged docker in yet)
-  -w, --watch-directory=<value>...     Directories that should be watched to trigger the build. Note, if you set this
-                                       then it IGNORES the build directory so you'd have to add that here as well.
+  -P, --docker-password=<value>                The password for logging into the docker repository (mainly for if you
+                                               are running this build process inside a container and have not logged
+                                               docker in yet)
+  -P, --platforms=<option>...                  [default: linux/amd64] The platforms that should be built for, e.g.
+                                               "linux/amd64,linux/arm64"
+                                               <options: linux/amd64|linux/arm64|linux/arm/v7|linux/arm/v6>
+  -W, --watch-file=<value>...                  Files that should be watched to trigger the build. Note, if you set this
+                                               then it IGNORES the build directory so you'd have to add that here as
+                                               well.
+  -b, --docker-build-flags=<value>...          Any additional build flags that you would like to plug directly into the
+                                               Docker build command
+  -f, --dockerfile-path=<value>                The path to the Dockerfile, if not specified, it's assumed that the file
+                                               is in the context directory
+  -i, --image-name=<value>                     (required) The name of the image that should be built
+  -l, --latest                                 Whether to push the latest tag to the registry
+  -p, --package=<value>                        [default: ./package.json] The path to the package.json that holds the
+                                               version of the build, the default is the package.json in the directory
+                                               the CLI is run from.
+  -r, --registry=<value>                       The registry that should be used (by default Docker Hub is used)
+  -t, --tag=<value>...                         The tag version that should be pushed to the registry so that it can be
+                                               used in automated deployments. E.g. 'stable' or 'testing'
+  -u, --docker-username=<value>                The username for logging into the docker repository (mainly for if you
+                                               are running this build process inside a container and have not logged
+                                               docker in yet)
+  -w, --watch-directory=<value>...             Directories that should be watched to trigger the build. Note, if you set
+                                               this then it IGNORES the build directory so you'd have to add that here
+                                               as well.
+  -x, --buildx-additional-build-flags=<value>  ADVANCED: Any additional build flags that you would like to plug directly
+                                               into the Docker buildx build command
 
 DESCRIPTION
   Build a Docker image if the hash does not exist on the Docker registry.
@@ -113,9 +120,11 @@ EXAMPLES
   $ docker-hash-build build . --image-name=kerren/docker-hash-build --watch-directory=./src --watch-file=./yarn.lock
 
   $ docker-hash-build build . --image-name=kerren/docker-hash-build --docker-username=username --docker-password=password --registry=registry.example.com
+
+  $ docker-hash-build build . --image-name=kerren/docker-hash-build --buildx-additional-build-flags="--cache-to type=gha,mode=max,scope=$GITHUB_REF_NAME-image-name --cache-from type=gha,mode=max,scope=$GITHUB_REF_NAME-image-name
 ```
 
-_See code: [dist/commands/build.ts](https://github.com/entrostat/docker-hash-build/blob/v2.1.2/dist/commands/build.ts)_
+_See code: [dist/commands/build.ts](https://github.com/entrostat/docker-hash-build/blob/v3.0.0-alpha.0/dist/commands/build.ts)_
 
 ## `docker-hash-build help [COMMANDS]`
 

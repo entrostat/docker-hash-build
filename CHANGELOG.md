@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.0.0-alpha.0](https://github.com/entrostat/docker-hash-build/compare/v2.1.2...v3.0.0-alpha.0) (2023-06-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cache:** Added the ability to specify additional buildx build flags. In this case, you can added Github action caching and more.
+
+### Features
+
+* **cache:** Added the ability to specify additional buildx build flags. In this case, you can added Github action caching and more. ([2a616b8](https://github.com/entrostat/docker-hash-build/commit/2a616b8393b96d5d7f645d3b8441af2a0e6707a7))
+
 ### [2.1.2](https://github.com/entrostat/docker-hash-build/compare/v2.1.1...v2.1.2) (2023-06-24)
 
 
