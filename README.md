@@ -20,7 +20,7 @@ $ npm install -g hash-build
 $ hash-build COMMAND
 running command...
 $ hash-build (--version)
-hash-build/0.0.1-major.0 linux-x64 node-v20.3.0
+hash-build/1.0.0 linux-x64 node-v20.3.0
 $ hash-build --help [COMMAND]
 USAGE
   $ hash-build COMMAND
@@ -75,7 +75,7 @@ EXAMPLES
   $ hash-build build
 ```
 
-_See code: [dist/commands/build.ts](https://github.com/entrostat/hash-build/blob/v0.0.1-major.0/dist/commands/build.ts)_
+_See code: [dist/commands/build.ts](https://github.com/entrostat/hash-build/blob/v1.0.0/dist/commands/build.ts)_
 
 ## `hash-build help [COMMANDS]`
 
