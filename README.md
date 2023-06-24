@@ -13,8 +13,8 @@ Part of the reason I built this was to ensure that I could reduce the build time
 [![GitHub license](https://img.shields.io/github/license/oclif/hello-world)](https://github.com/oclif/hello-world/blob/main/LICENSE)
 
 <!-- toc -->
-* [Usage](#usage)
 * [Requirements](#requirements)
+* [Usage](#usage)
 * [Commands](#commands)
 * [Detailed Explanation](#detailed-explanation)
 * [Getting Started (Contributing)](#getting-started-contributing)
@@ -34,7 +34,7 @@ $ npm install -g hash-build
 $ hash-build COMMAND
 running command...
 $ hash-build (--version)
-hash-build/1.0.1 linux-x64 node-v20.3.0
+hash-build/1.0.2 linux-x64 node-v20.3.0
 $ hash-build --help [COMMAND]
 USAGE
   $ hash-build COMMAND
@@ -114,7 +114,7 @@ EXAMPLES
   $ hash-build build . --image-name=kerren/hash-build --docker-username=username --docker-password=password --registry=registry.example.com
 ```
 
-_See code: [dist/commands/build.ts](https://github.com/entrostat/hash-build/blob/v1.0.1/dist/commands/build.ts)_
+_See code: [dist/commands/build.ts](https://github.com/entrostat/hash-build/blob/v1.0.2/dist/commands/build.ts)_
 
 ## `hash-build help [COMMANDS]`
 
