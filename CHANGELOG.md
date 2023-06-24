@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [3.0.3](https://github.com/entrostat/docker-hash-build/compare/v3.0.2...v3.0.3) (2023-06-24)
+
 ### [3.0.2](https://github.com/entrostat/docker-hash-build/compare/v3.0.0...v3.0.2) (2023-06-24)
 
 
