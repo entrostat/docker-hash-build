@@ -17,7 +17,9 @@ export async function createBuildxBuilder() {
   }
 
   // 2. Create new builder
-  await executeCommand(`docker buildx create --name ${builderName}`);
+  await executeCommand(
+    `docker buildx create --name ${builderName} --driver=docker-container`,
+  );
 
   // 3. Use the latest builder
   await executeCommand(`docker buildx use ${builderName}`);
