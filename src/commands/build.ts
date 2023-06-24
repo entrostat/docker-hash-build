@@ -19,6 +19,7 @@ export default class Build extends BaseCommand {
     `<%= config.bin %> <%= command.id %> . --image-name=kerren/docker-hash-build --watch-directory=./src`,
     `<%= config.bin %> <%= command.id %> . --image-name=kerren/docker-hash-build --watch-directory=./src --watch-file=./yarn.lock`,
     `<%= config.bin %> <%= command.id %> . --image-name=kerren/docker-hash-build --docker-username=username --docker-password=password --registry=registry.example.com`,
+    `<%= config.bin %> <%= command.id %> . --image-name=kerren/docker-hash-build --buildx-additional-build-flags="--cache-to type=gha,mode=max,scope=$GITHUB_REF_NAME-image-name --cache-from type=gha,mode=max,scope=$GITHUB_REF_NAME-image-name`,
   ];
 
   static flags = {
@@ -99,6 +100,13 @@ export default class Build extends BaseCommand {
       char: "i",
       required: true,
       description: `The name of the image that should be built`,
+    }),
+    "buildx-additional-build-flags": Flags.string({
+      char: "x",
+      required: false,
+      default: "",
+      description:
+        "ADVANCED: Any additional build flags that you would like to plug directly into the Docker buildx build command",
     }),
   };
 
