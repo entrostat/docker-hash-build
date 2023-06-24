@@ -14,8 +14,10 @@ Part of the reason I built this was to ensure that I could reduce the build time
 
 <!-- toc -->
 * [Usage](#usage)
+* [Requirements](#requirements)
 * [Commands](#commands)
-* [Getting Started](#getting-started)
+* [Detailed Explanation](#detailed-explanation)
+* [Getting Started (Contributing)](#getting-started-contributing)
 <!-- tocstop -->
 # Usage
 <!-- usage -->
@@ -24,7 +26,7 @@ $ npm install -g hash-build
 $ hash-build COMMAND
 running command...
 $ hash-build (--version)
-hash-build/1.0.0 linux-x64 node-v20.3.0
+hash-build/1.0.1 linux-x64 node-v20.3.0
 $ hash-build --help [COMMAND]
 USAGE
   $ hash-build COMMAND
@@ -82,10 +84,26 @@ DESCRIPTION
   Build a Docker image if the hash does not exist on the Docker registry.
 
 EXAMPLES
-  $ hash-build build
+  $ hash-build build . --image-name=kerren/hash-build --platforms=linux/amd64 --platforms=linux/arm64
+
+  $ hash-build build ./path/to/repo --image-name=kerren/hash-build
+
+  $ hash-build build . --image-name=kerren/hash-build --dockerfile-path=./Dockerfile.stable
+
+  $ hash-build build . --image-name=kerren/hash-build --tag=staging
+
+  $ hash-build build . --image-name=kerren/hash-build --tag=stable --latest
+
+  $ hash-build build . --image-name=kerren/hash-build --watch-file=./yarn.lock
+
+  $ hash-build build . --image-name=kerren/hash-build --watch-directory=./src
+
+  $ hash-build build . --image-name=kerren/hash-build --watch-directory=./src --watch-file=./yarn.lock
+
+  $ hash-build build . --image-name=kerren/hash-build --docker-username=username --docker-password=password --registry=registry.example.com
 ```
 
-_See code: [dist/commands/build.ts](https://github.com/entrostat/hash-build/blob/v1.0.0/dist/commands/build.ts)_
+_See code: [dist/commands/build.ts](https://github.com/entrostat/hash-build/blob/v1.0.1/dist/commands/build.ts)_
 
 ## `hash-build help [COMMANDS]`
 
