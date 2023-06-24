@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [2.1.1](https://github.com/entrostat/docker-hash-build/compare/v2.1.0...v2.1.1) (2023-06-24)
+
+
+### Bug Fixes
+
+* **devops:** Removed the shrinkwrap json file from the Dockerfile build ([25cc8c2](https://github.com/entrostat/docker-hash-build/commit/25cc8c272ef25b3cfa691051788b9dafbb1fad9b))
+
 ## [2.1.0](https://github.com/entrostat/docker-hash-build/compare/v2.0.0...v2.1.0) (2023-06-24)
 
 
