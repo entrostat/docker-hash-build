@@ -9,7 +9,7 @@ RUN yarn
 
 COPY . .
 
-RUN yarn build
+RUN yarn prepack
 
 
 FROM node:20-alpine

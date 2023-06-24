@@ -11,6 +11,7 @@ This CLI can be used to reduce the number of times you "build" something unneces
 <!-- toc -->
 * [Usage](#usage)
 * [Commands](#commands)
+* [Getting Started](#getting-started)
 <!-- tocstop -->
 # Usage
 <!-- usage -->
@@ -19,7 +20,7 @@ $ npm install -g hash-build
 $ hash-build COMMAND
 running command...
 $ hash-build (--version)
-hash-build/0.0.0 linux-x64 node-v16.19.0
+hash-build/0.0.0 linux-x64 node-v20.3.0
 $ hash-build --help [COMMAND]
 USAGE
   $ hash-build COMMAND
@@ -28,58 +29,53 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`hash-build hello PERSON`](#hash-build-hello-person)
-* [`hash-build hello world`](#hash-build-hello-world)
+* [`hash-build build DIRECTORY`](#hash-build-build-directory)
 * [`hash-build help [COMMANDS]`](#hash-build-help-commands)
-* [`hash-build plugins`](#hash-build-plugins)
-* [`hash-build plugins:install PLUGIN...`](#hash-build-pluginsinstall-plugin)
-* [`hash-build plugins:inspect PLUGIN...`](#hash-build-pluginsinspect-plugin)
-* [`hash-build plugins:install PLUGIN...`](#hash-build-pluginsinstall-plugin-1)
-* [`hash-build plugins:link PLUGIN`](#hash-build-pluginslink-plugin)
-* [`hash-build plugins:uninstall PLUGIN...`](#hash-build-pluginsuninstall-plugin)
-* [`hash-build plugins:uninstall PLUGIN...`](#hash-build-pluginsuninstall-plugin-1)
-* [`hash-build plugins:uninstall PLUGIN...`](#hash-build-pluginsuninstall-plugin-2)
-* [`hash-build plugins update`](#hash-build-plugins-update)
 
-## `hash-build hello PERSON`
+## `hash-build build DIRECTORY`
 
-Say hello
+Build a Docker image if the hash does not exist on the Docker registry.
 
 ```
 USAGE
-  $ hash-build hello PERSON -f <value>
+  $ hash-build build DIRECTORY -i <value> [-f <value>] [-r <value>] [-t <value>] [-p <value>] [-w <value>]
+    [-W <value>] [-b <value>] [-u <value>] [-P <value>] [-l] [-P linux/amd64|linux/arm64|linux/arm/v7|linux/arm/v6]
 
 ARGUMENTS
-  PERSON  Person to say hello to
+  DIRECTORY  The directory that represents the "context" for your docker build
 
 FLAGS
-  -f, --from=<value>  (required) Who is saying hello
+  -P, --docker-password=<value>        The password for logging into the docker repository (mainly for if you are
+                                       running this build process inside a container and have not logged docker in yet)
+  -P, --platforms=<option>...          [default: linux/amd64] The platforms that should be built for, e.g.
+                                       "linux/amd64,linux/arm64"
+                                       <options: linux/amd64|linux/arm64|linux/arm/v7|linux/arm/v6>
+  -W, --watch-file=<value>...          Files that should be watched to trigger the build. Note, if you set this then it
+                                       IGNORES the build directory so you'd have to add that here as well.
+  -b, --docker-build-flags=<value>...  Any additional build flags that you would like to plug directly into the Docker
+                                       build command
+  -f, --dockerfile-path=<value>        The path to the Dockerfile, if not specified, it's assumed that the file is in
+                                       the context directory
+  -i, --image-name=<value>             (required) The name of the image that should be built
+  -l, --latest                         Whether to push the latest tag to the registry
+  -p, --package=<value>                [default: ./package.json] The path to the package.json that holds the version of
+                                       the build, the default is the package.json in the directory the CLI is run from.
+  -r, --registry=<value>               The registry that should be used (by default Docker Hub is used)
+  -t, --tag=<value>...                 The tag version that should be pushed to the registry so that it can be used in
+                                       automated deployments. E.g. 'stable' or 'testing'
+  -u, --docker-username=<value>        The username for logging into the docker repository (mainly for if you are
+                                       running this build process inside a container and have not logged docker in yet)
+  -w, --watch-directory=<value>...     Directories that should be watched to trigger the build. Note, if you set this
+                                       then it IGNORES the build directory so you'd have to add that here as well.
 
 DESCRIPTION
-  Say hello
+  Build a Docker image if the hash does not exist on the Docker registry.
 
 EXAMPLES
-  $ oex hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
+  $ hash-build build
 ```
 
-_See code: [dist/commands/hello/index.ts](https://github.com/entrostat/hash-build/blob/v0.0.0/dist/commands/hello/index.ts)_
-
-## `hash-build hello world`
-
-Say hello world
-
-```
-USAGE
-  $ hash-build hello world
-
-DESCRIPTION
-  Say hello world
-
-EXAMPLES
-  $ hash-build hello world
-  hello world! (./src/commands/hello/world.ts)
-```
+_See code: [dist/commands/build.ts](https://github.com/entrostat/hash-build/blob/v0.0.0/dist/commands/build.ts)_
 
 ## `hash-build help [COMMANDS]`
 
@@ -100,239 +96,6 @@ DESCRIPTION
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.9/src/commands/help.ts)_
-
-## `hash-build plugins`
-
-List installed plugins.
-
-```
-USAGE
-  $ hash-build plugins [--core]
-
-FLAGS
-  --core  Show core plugins.
-
-DESCRIPTION
-  List installed plugins.
-
-EXAMPLES
-  $ hash-build plugins
-```
-
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/index.ts)_
-
-## `hash-build plugins:install PLUGIN...`
-
-Installs a plugin into the CLI.
-
-```
-USAGE
-  $ hash-build plugins:install PLUGIN...
-
-ARGUMENTS
-  PLUGIN  Plugin to install.
-
-FLAGS
-  -f, --force    Run yarn install with force flag.
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Installs a plugin into the CLI.
-  Can be installed from npm or a git url.
-
-  Installation of a user-installed plugin will override a core plugin.
-
-  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
-  will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
-  the CLI without the need to patch and update the whole CLI.
-
-
-ALIASES
-  $ hash-build plugins add
-
-EXAMPLES
-  $ hash-build plugins:install myplugin 
-
-  $ hash-build plugins:install https://github.com/someuser/someplugin
-
-  $ hash-build plugins:install someuser/someplugin
-```
-
-## `hash-build plugins:inspect PLUGIN...`
-
-Displays installation properties of a plugin.
-
-```
-USAGE
-  $ hash-build plugins:inspect PLUGIN...
-
-ARGUMENTS
-  PLUGIN  [default: .] Plugin to inspect.
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-GLOBAL FLAGS
-  --json  Format output as json.
-
-DESCRIPTION
-  Displays installation properties of a plugin.
-
-EXAMPLES
-  $ hash-build plugins:inspect myplugin
-```
-
-## `hash-build plugins:install PLUGIN...`
-
-Installs a plugin into the CLI.
-
-```
-USAGE
-  $ hash-build plugins:install PLUGIN...
-
-ARGUMENTS
-  PLUGIN  Plugin to install.
-
-FLAGS
-  -f, --force    Run yarn install with force flag.
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Installs a plugin into the CLI.
-  Can be installed from npm or a git url.
-
-  Installation of a user-installed plugin will override a core plugin.
-
-  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
-  will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
-  the CLI without the need to patch and update the whole CLI.
-
-
-ALIASES
-  $ hash-build plugins add
-
-EXAMPLES
-  $ hash-build plugins:install myplugin 
-
-  $ hash-build plugins:install https://github.com/someuser/someplugin
-
-  $ hash-build plugins:install someuser/someplugin
-```
-
-## `hash-build plugins:link PLUGIN`
-
-Links a plugin into the CLI for development.
-
-```
-USAGE
-  $ hash-build plugins:link PLUGIN
-
-ARGUMENTS
-  PATH  [default: .] path to plugin
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Links a plugin into the CLI for development.
-  Installation of a linked plugin will override a user-installed or core plugin.
-
-  e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a linked plugin with a 'hello'
-  command will override the user-installed or core plugin implementation. This is useful for development work.
-
-
-EXAMPLES
-  $ hash-build plugins:link myplugin
-```
-
-## `hash-build plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ hash-build plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ hash-build plugins unlink
-  $ hash-build plugins remove
-```
-
-## `hash-build plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ hash-build plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ hash-build plugins unlink
-  $ hash-build plugins remove
-```
-
-## `hash-build plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ hash-build plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ hash-build plugins unlink
-  $ hash-build plugins remove
-```
-
-## `hash-build plugins update`
-
-Update installed plugins.
-
-```
-USAGE
-  $ hash-build plugins update [-h] [-v]
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Update installed plugins.
-```
 <!-- commandsstop -->
 
 
