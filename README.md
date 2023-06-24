@@ -13,31 +13,42 @@ Part of the reason I built this was to ensure that I could reduce the build time
 [![GitHub license](https://img.shields.io/github/license/oclif/hello-world)](https://github.com/oclif/hello-world/blob/main/LICENSE)
 
 <!-- toc -->
-* [Usage](#usage)
 * [Requirements](#requirements)
+* [Usage](#usage)
 * [Commands](#commands)
 * [Detailed Explanation](#detailed-explanation)
 * [Getting Started (Contributing)](#getting-started-contributing)
 <!-- tocstop -->
+
+# Requirements
+In order to use this CLI, you must have:
+ - `docker` installed and accessible via the command line (and your user)
+ - `docker buildx` support
+ - (optional) [regclient](https://github.com/regclient/regclient) installed and accessible via the command line (and your user). If this is not installed, the `hash-build` cli will `curl` for the binary file and install it for you. This will only work on an `amd64` machine. If you have a different machine, installed `regcli` beforehand!
+
 # Usage
+
 <!-- usage -->
 ```sh-session
 $ npm install -g hash-build
 $ hash-build COMMAND
 running command...
 $ hash-build (--version)
-hash-build/1.0.1 linux-x64 node-v20.3.0
+hash-build/1.0.2 linux-x64 node-v20.3.0
 $ hash-build --help [COMMAND]
 USAGE
   $ hash-build COMMAND
 ...
 ```
 <!-- usagestop -->
-# Requirements
-In order to use this CLI, you must have:
- - `docker` installed and accessible via the command line (and your user)
- - `docker buildx` support
- - (optional) [regclient](https://github.com/regclient/regclient) installed and accessible via the command line (and your user). If this is not installed, the `hash-build` cli will `curl` for the binary file and install it for you. This will only work on an `amd64` machine. If you have a different machine, installed `regcli` beforehand!
+
+I recommend using `npx` for convenience:
+```sh-session
+$ npx hash-build build --help
+```
+
+
+
 
 # Commands
 <!-- commands -->
@@ -103,7 +114,7 @@ EXAMPLES
   $ hash-build build . --image-name=kerren/hash-build --docker-username=username --docker-password=password --registry=registry.example.com
 ```
 
-_See code: [dist/commands/build.ts](https://github.com/entrostat/hash-build/blob/v1.0.1/dist/commands/build.ts)_
+_See code: [dist/commands/build.ts](https://github.com/entrostat/hash-build/blob/v1.0.2/dist/commands/build.ts)_
 
 ## `hash-build help [COMMANDS]`
 
