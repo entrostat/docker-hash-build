@@ -15,6 +15,6 @@ export async function buildFromHash(
   );
   const imageName = generateImageName(dockerBuildOptions, hash);
   await executeCommand(
-    `docker buildx build ${dockerBuildOptions.directory} -f ${dockerBuildOptions.dockerfilePath} --platform ${platforms} -t ${imageName} --push`,
+    `docker buildx build ${dockerBuildOptions.directory} -f ${dockerBuildOptions.dockerfilePath} --platform ${platforms} -t ${imageName} --push ${dockerBuildOptions.buildxAdditionalBuildFlags}`,
   );
 }
