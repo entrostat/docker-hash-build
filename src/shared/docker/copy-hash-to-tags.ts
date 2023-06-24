@@ -12,10 +12,7 @@ export async function copyHashToTags(
   hash: string,
 ) {
   const hashImageName = generateImageName(dockerBuildOptions, hash);
-  const { tags, platforms, registry } = await extractImageBuildDetails(
-    dockerBuildOptions,
-    hash,
-  );
+  const { tags } = await extractImageBuildDetails(dockerBuildOptions, hash);
   const regctlPath = await installRegctl();
   for (const tag of tags) {
     const imageName = generateImageName(dockerBuildOptions, tag);

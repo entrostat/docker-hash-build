@@ -9,12 +9,12 @@ export async function buildFromHash(
   hash: string,
 ) {
   await createBuildxBuilder();
-  const { platforms, registry } = await extractImageBuildDetails(
+  const { platforms } = await extractImageBuildDetails(
     dockerBuildOptions,
     hash,
   );
   const imageName = generateImageName(dockerBuildOptions, hash);
   await executeCommand(
-    `docker buildx build ${dockerBuildOptions.directory} -f ${dockerBuildOptions.dockerfilePath} --platform ${platforms} -t ${registry}${imageName} --push`,
+    `docker buildx build ${dockerBuildOptions.directory} -f ${dockerBuildOptions.dockerfilePath} --platform ${platforms} -t ${imageName} --push`,
   );
 }
