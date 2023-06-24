@@ -44,4 +44,8 @@ export class DockerBuildOptions {
 
   @Expose()
   directory!: string;
+
+  @Expose()
+  @Transform(({ value, obj }) => value || obj["image-name"])
+  imageName!: string;
 }

@@ -1,10 +1,9 @@
 import "reflect-metadata";
 import { Args, Flags } from "@oclif/core";
 import { rawToDockerBuildOptions } from "../shared/raw-to-docker-build-options";
-import { container } from "tsyringe";
-import { HashService } from "../shared/hash.service";
 import { BaseCommand } from "../shared/base-command";
-import * as path from "path";
+import { dockerBuildWorkflow } from "../shared/docker/docker-build-workflow";
+import { generateHash } from "../shared/generate-hash";
 
 export default class Build extends BaseCommand {
   static description =
@@ -86,6 +85,11 @@ export default class Build extends BaseCommand {
       options: ["linux/amd64", "linux/arm64", "linux/arm/v7", "linux/arm/v6"],
       multiple: true,
     }),
+    "image-name": Flags.string({
+      char: "i",
+      required: true,
+      description: `The name of the image that should be built`,
+    }),
   };
 
   static args = {
@@ -100,16 +104,7 @@ export default class Build extends BaseCommand {
     const { args, flags } = await this.parse(Build);
 
     const dockerBuildOptions = rawToDockerBuildOptions(flags, args);
-
-    const directories = [
-      ...dockerBuildOptions.watchDirectory,
-      dockerBuildOptions.directory,
-    ].map((d) => path.resolve("./", d));
-    const files = dockerBuildOptions.watchFile.map((f) =>
-      path.resolve("./", f),
-    );
-
-    const hashService = container.resolve(HashService);
-    const hash = await hashService.hash(directories, files);
+    const hash = await generateHash(dockerBuildOptions);
+    await dockerBuildWorkflow(dockerBuildOptions, hash);
   }
 }
