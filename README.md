@@ -34,7 +34,7 @@ $ npm install -g docker-hash-build
 $ docker-hash-build COMMAND
 running command...
 $ docker-hash-build (--version)
-docker-hash-build/2.0.0 linux-x64 node-v20.3.0
+docker-hash-build/2.1.0 linux-x64 node-v20.3.0
 $ docker-hash-build --help [COMMAND]
 USAGE
   $ docker-hash-build COMMAND
@@ -115,7 +115,7 @@ EXAMPLES
   $ docker-hash-build build . --image-name=kerren/docker-hash-build --docker-username=username --docker-password=password --registry=registry.example.com
 ```
 
-_See code: [dist/commands/build.ts](https://github.com/entrostat/docker-hash-build/blob/v2.0.0/dist/commands/build.ts)_
+_See code: [dist/commands/build.ts](https://github.com/entrostat/docker-hash-build/blob/v2.1.0/dist/commands/build.ts)_
 
 ## `docker-hash-build help [COMMANDS]`
 
