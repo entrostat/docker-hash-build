@@ -34,7 +34,7 @@ $ npm install -g docker-hash-build
 $ docker-hash-build COMMAND
 running command...
 $ docker-hash-build (--version)
-docker-hash-build/1.0.2 linux-x64 node-v20.3.0
+docker-hash-build/2.0.0 linux-x64 node-v20.3.0
 $ docker-hash-build --help [COMMAND]
 USAGE
   $ docker-hash-build COMMAND
@@ -61,8 +61,9 @@ Build a Docker image if the hash does not exist on the Docker registry.
 
 ```
 USAGE
-  $ docker-hash-build build DIRECTORY -i <value> [-f <value>] [-r <value>] [-t <value>] [-p <value>] [-w <value>]
-    [-W <value>] [-b <value>] [-u <value>] [-P <value>] [-l] [-P linux/amd64|linux/arm64|linux/arm/v7|linux/arm/v6]
+  $ docker-hash-build build DIRECTORY -i <value> [-f <value>] [-r <value>] [-t <value>] [-p <value>] [-w
+    <value>] [-W <value>] [-b <value>] [-u <value>] [-P <value>] [-l] [-P
+    linux/amd64|linux/arm64|linux/arm/v7|linux/arm/v6]
 
 ARGUMENTS
   DIRECTORY  The directory that represents the "context" for your docker build
@@ -114,7 +115,7 @@ EXAMPLES
   $ docker-hash-build build . --image-name=kerren/docker-hash-build --docker-username=username --docker-password=password --registry=registry.example.com
 ```
 
-_See code: [dist/commands/build.ts](https://github.com/entrostat/docker-hash-build/blob/v1.0.2/dist/commands/build.ts)_
+_See code: [dist/commands/build.ts](https://github.com/entrostat/docker-hash-build/blob/v2.0.0/dist/commands/build.ts)_
 
 ## `docker-hash-build help [COMMANDS]`
 
