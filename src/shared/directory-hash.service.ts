@@ -20,7 +20,7 @@ export class DirectoryHashService {
       `find ${directory.replace(
         / /g,
         "\\ ",
-      )} -type f -print0 | sort -z | xargs -0 sha1sum | sha1sum`,
+      )} -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum`,
     );
     return hash.replace(/ +-/, "").replace(/\n/, "");
   }

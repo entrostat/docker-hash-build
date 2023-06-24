@@ -16,7 +16,7 @@ export class FileHashService {
    * @param file The file to hash
    */
   async hashSingleFile(file: string): Promise<string> {
-    const hash = await executeCommand(`sha1sum '${file}'`);
+    const hash = await executeCommand(`sha256sum '${file}'`);
     return hash.replace(/ +.+/, "").replace(/\n/, "");
   }
 }

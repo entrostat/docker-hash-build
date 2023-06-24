@@ -22,7 +22,7 @@ export class HashService {
     ]);
     const hashes = [...directoryHashes, ...fileHashes].sort();
     const hash = await executeCommand(
-      `echo ${hashes.join("").trim()} | sha1sum`,
+      `echo ${hashes.join("").trim()} | sha256sum`,
     );
     return hash.replace(/ +-/, "").replace(/\n/, "");
   }
