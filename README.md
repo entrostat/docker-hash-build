@@ -160,6 +160,11 @@ The more exciting part is when you specify a tag(s). For instance, let's say you
 
 I recommend logging into your registry beforehand since this `cli` just calls the `docker` cli through terminal. However, if you would like to include the login credentials in the `cli` call (for example in CI/CD pipelines), you can specify the registry, username, and password.
 
+## Platforms
+
+By default, images are built for `amd64`, but you are able to specify the platform that you would like to build for. Currently, I've added the following options: `linux/amd64`, `linux/arm64`, `linux/arm/v7`, `linux/arm/v6`. If you need any others, please open an issue or PR the change into the repo.
+
+
 # Getting Started (Contributing)
 
 To develop on the project, clone it and run:
