@@ -179,7 +179,7 @@ I've added the ability for you to plug in `buildx` build flags directly using th
 
 An example of how this may look would be:
 ```
---buildx-additional-build-flags="--cache-to type=gha,mode=max,scope=${GITHUB_REF_NAME}-docker-hash-build --cache-from type=gha,mode=max,scope=${GITHUB_REF_NAME}-docker-hash-build"               
+--buildx-additional-build-flags="--cache-to type=gha,mode=max,scope=${GITHUB_REF_NAME}-docker-hash-build --cache-from type=gha,scope=${GITHUB_REF_NAME}-docker-hash-build"               
 ```
 
 This is quite complicated but it does allow you to tweak the build command a bit and potentially optimise your build process further!
