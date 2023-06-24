@@ -1,8 +1,15 @@
 import { Expose, Transform } from "class-transformer";
-
+import * as path from "node:path";
 export class DockerBuildOptions {
   @Expose()
-  @Transform(({ value, obj }) => value || obj["dockerfile-path"])
+  @Transform(({ value, obj }) => {
+    const dockerfilePath = value || obj["dockerfile-path"];
+    if (!dockerfilePath) {
+      // Default to the Dockerfile in the directory
+      return path.join(obj.directory, "Dockerfile");
+    }
+    return dockerfilePath;
+  })
   dockerfilePath!: string;
 
   @Expose()

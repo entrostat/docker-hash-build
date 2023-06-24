@@ -102,7 +102,6 @@ export default class Build extends BaseCommand {
 
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(Build);
-
     const dockerBuildOptions = rawToDockerBuildOptions(flags, args);
     const hash = await generateHash(dockerBuildOptions);
     await dockerBuildWorkflow(dockerBuildOptions, hash);

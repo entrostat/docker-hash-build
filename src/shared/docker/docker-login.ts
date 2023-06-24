@@ -6,8 +6,10 @@ export async function dockerLogin(dockerBuildOptions: DockerBuildOptions) {
     !dockerBuildOptions.dockerUsername ||
     !dockerBuildOptions.dockerPassword
   ) {
+    console.log("No docker username or password provided, skipping login");
     return;
   }
+  console.log("Logging into docker");
   await executeCommand(
     `docker login -u "${dockerBuildOptions.dockerUsername}" -p "${
       dockerBuildOptions.dockerPassword
