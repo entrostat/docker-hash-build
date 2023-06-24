@@ -19,7 +19,15 @@ Part of the reason I built this was to ensure that I could reduce the build time
 * [Detailed Explanation](#detailed-explanation)
 * [Getting Started (Contributing)](#getting-started-contributing)
 <!-- tocstop -->
+
+# Requirements
+In order to use this CLI, you must have:
+ - `docker` installed and accessible via the command line (and your user)
+ - `docker buildx` support
+ - (optional) [regclient](https://github.com/regclient/regclient) installed and accessible via the command line (and your user). If this is not installed, the `hash-build` cli will `curl` for the binary file and install it for you. This will only work on an `amd64` machine. If you have a different machine, installed `regcli` beforehand!
+
 # Usage
+
 <!-- usage -->
 ```sh-session
 $ npm install -g hash-build
@@ -33,11 +41,14 @@ USAGE
 ...
 ```
 <!-- usagestop -->
-# Requirements
-In order to use this CLI, you must have:
- - `docker` installed and accessible via the command line (and your user)
- - `docker buildx` support
- - (optional) [regclient](https://github.com/regclient/regclient) installed and accessible via the command line (and your user). If this is not installed, the `hash-build` cli will `curl` for the binary file and install it for you. This will only work on an `amd64` machine. If you have a different machine, installed `regcli` beforehand!
+
+I recommend using `npx` for convenience:
+```sh-session
+$ npx hash-build build --help
+```
+
+
+
 
 # Commands
 <!-- commands -->
