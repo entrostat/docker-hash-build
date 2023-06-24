@@ -34,7 +34,7 @@ $ npm install -g docker-hash-build
 $ docker-hash-build COMMAND
 running command...
 $ docker-hash-build (--version)
-docker-hash-build/3.0.2 linux-x64 node-v20.3.0
+docker-hash-build/3.0.3 linux-x64 node-v20.3.0
 $ docker-hash-build --help [COMMAND]
 USAGE
   $ docker-hash-build COMMAND
@@ -124,7 +124,7 @@ EXAMPLES
   $ docker-hash-build build . --image-name=kerren/docker-hash-build --buildx-additional-build-flags="--cache-to type=gha,mode=max,scope=$GITHUB_REF_NAME-image-name --cache-from type=gha,mode=max,scope=$GITHUB_REF_NAME-image-name"
 ```
 
-_See code: [dist/commands/build.ts](https://github.com/entrostat/docker-hash-build/blob/v3.0.2/dist/commands/build.ts)_
+_See code: [dist/commands/build.ts](https://github.com/entrostat/docker-hash-build/blob/v3.0.3/dist/commands/build.ts)_
 
 ## `docker-hash-build help [COMMANDS]`
 
@@ -173,6 +173,16 @@ I recommend logging into your registry beforehand since this `cli` just calls th
 
 By default, images are built for `amd64`, but you are able to specify the platform that you would like to build for. Currently, I've added the following options: `linux/amd64`, `linux/arm64`, `linux/arm/v7`, `linux/arm/v6`. If you need any others, please open an issue or PR the change into the repo.
 
+## Custom `buildx` flags
+
+I've added the ability for you to plug in `buildx` build flags directly using the `--buildx-additional-build-flags` flag. This allows you to set up things like caching. For instance, for Github, here's a great article on [caching Github Actions builds using buildx](https://docs.docker.com/build/cache/backends/gha/).
+
+An example of how this may look would be:
+```
+--buildx-additional-build-flags="--cache-to type=gha,mode=max,scope=${GITHUB_REF_NAME}-docker-hash-build --cache-from type=gha,mode=max,scope=${GITHUB_REF_NAME}-docker-hash-build"               
+```
+
+This is quite complicated but it does allow you to tweak the build command a bit and potentially optimise your build process further!
 
 # Getting Started (Contributing)
 
