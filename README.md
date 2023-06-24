@@ -34,7 +34,7 @@ $ npm install -g docker-hash-build
 $ docker-hash-build COMMAND
 running command...
 $ docker-hash-build (--version)
-docker-hash-build/2.0.0 linux-x64 node-v20.3.0
+docker-hash-build/2.1.0 linux-x64 node-v20.3.0
 $ docker-hash-build --help [COMMAND]
 USAGE
   $ docker-hash-build COMMAND
@@ -115,7 +115,7 @@ EXAMPLES
   $ docker-hash-build build . --image-name=kerren/docker-hash-build --docker-username=username --docker-password=password --registry=registry.example.com
 ```
 
-_See code: [dist/commands/build.ts](https://github.com/entrostat/docker-hash-build/blob/v2.0.0/dist/commands/build.ts)_
+_See code: [dist/commands/build.ts](https://github.com/entrostat/docker-hash-build/blob/v2.1.0/dist/commands/build.ts)_
 
 ## `docker-hash-build help [COMMANDS]`
 
@@ -159,6 +159,11 @@ The more exciting part is when you specify a tag(s). For instance, let's say you
 ## Docker Credentials
 
 I recommend logging into your registry beforehand since this `cli` just calls the `docker` cli through terminal. However, if you would like to include the login credentials in the `cli` call (for example in CI/CD pipelines), you can specify the registry, username, and password.
+
+## Platforms
+
+By default, images are built for `amd64`, but you are able to specify the platform that you would like to build for. Currently, I've added the following options: `linux/amd64`, `linux/arm64`, `linux/arm/v7`, `linux/arm/v6`. If you need any others, please open an issue or PR the change into the repo.
+
 
 # Getting Started (Contributing)
 

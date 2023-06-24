@@ -1,6 +1,6 @@
 {
   "name": "docker-hash-build",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "A CLI that optimises Docker builds by allowing you to \"check\" if something needs to be built before triggering the build.",
   "author": "Kerren Ortlepp @Kerren-Entrostat",
   "bin": {
@@ -77,9 +77,14 @@
     "oclif",
     "cli",
     "docker",
+    "image",
+    "registry",
     "build",
+    "builder",
     "cache",
     "hash",
+    "sha",
+    "sha256",
     "speed",
     "improvement",
     "continuous integration",
@@ -88,9 +93,18 @@
     "ci",
     "cd",
     "performance",
+    "optimize",
+    "optimise",
+    "speed",
     "pipeline",
     "utility",
-    "tool"
+    "tool",
+    "buildx",
+    "arm",
+    "amd",
+    "arm64",
+    "amd64",
+    "docker-build"
   ],
   "types": "dist/index.d.ts"
 }
