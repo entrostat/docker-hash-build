@@ -7,8 +7,5 @@ export async function extractImageBuildDetails(
 ) {
   const tags = await generateImageTags(dockerBuildOptions, hash);
   const platforms = dockerBuildOptions.platforms.join(",");
-  const registry = dockerBuildOptions.registry
-    ? `${dockerBuildOptions.registry}/`
-    : "";
-  return { tags, platforms, registry };
+  return { tags, platforms };
 }
