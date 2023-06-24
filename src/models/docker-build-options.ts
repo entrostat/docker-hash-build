@@ -55,4 +55,10 @@ export class DockerBuildOptions {
   @Expose()
   @Transform(({ value, obj }) => value || obj["image-name"])
   imageName!: string;
+
+  @Expose()
+  @Transform(
+    ({ value, obj }) => value || obj["buildx-additional-build-flags"] || "",
+  )
+  buildxAdditionalBuildFlags!: string;
 }
