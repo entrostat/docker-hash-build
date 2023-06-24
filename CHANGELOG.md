@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.1.0](https://github.com/entrostat/docker-hash-build/compare/v3.0.3...v3.1.0) (2023-06-24)
+
+
+### Features
+
+* **exist-check:** Use regctl to check if a manifest exists or not to ensure that we don't get the unsupported manifest issues ([6b074d3](https://github.com/entrostat/docker-hash-build/commit/6b074d350c52df699e6f5ff40a66ac6aa92b367e))
+
 ### [3.0.3](https://github.com/entrostat/docker-hash-build/compare/v3.0.2...v3.0.3) (2023-06-24)
 
 ### [3.0.2](https://github.com/entrostat/docker-hash-build/compare/v3.0.0...v3.0.2) (2023-06-24)
