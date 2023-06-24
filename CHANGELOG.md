@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.1.0](https://github.com/entrostat/docker-hash-build/compare/v2.0.0...v2.1.0) (2023-06-24)
+
+
+### Features
+
+* **tags:** Added more tags for the search on npm.js ([2136797](https://github.com/entrostat/docker-hash-build/commit/21367979f2714db9eae3af5a677d59029d86cced))
+
 ## [2.0.0](https://github.com/entrostat/docker-hash-build/compare/v1.0.2...v2.0.0) (2023-06-24)
 
 
