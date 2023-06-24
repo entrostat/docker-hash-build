@@ -1,9 +1,9 @@
-hash-build
+docker-hash-build
 =================
 
 This CLI can be used to reduce the number of times you "build" something unnecessarily. Even with cache in Docker, there is still a build time and this would reduce that time by checking if anything has changed before triggering the `docker build` command.
 
-The `hash-build` CLI stores a calculated hash on your Docker registry to ensure that you don't rebuild images that are already there. You're hash your whole repo, a few directories, and a few files to control when a rebuild is needed.
+The `docker-hash-build` CLI stores a calculated hash on your Docker registry to ensure that you don't rebuild images that are already there. You're hash your whole repo, a few directories, and a few files to control when a rebuild is needed.
 
 I use [regclient](https://github.com/regclient/regclient) to copy tags to quickly "retag" things that were built so you don't need to pull images down and push them back under the new tag. Thanks to the contributors or [regclient](https://github.com/regclient/regclient) for this incredible tool!
 
@@ -24,27 +24,27 @@ Part of the reason I built this was to ensure that I could reduce the build time
 In order to use this CLI, you must have:
  - `docker` installed and accessible via the command line (and your user)
  - `docker buildx` support
- - (optional) [regclient](https://github.com/regclient/regclient) installed and accessible via the command line (and your user). If this is not installed, the `hash-build` cli will `curl` for the binary file and install it for you. This will only work on an `amd64` machine. If you have a different machine, installed `regcli` beforehand!
+ - (optional) [regclient](https://github.com/regclient/regclient) installed and accessible via the command line (and your user). If this is not installed, the `docker-hash-build` cli will `curl` for the binary file and install it for you. This will only work on an `amd64` machine. If you have a different machine, installed `regcli` beforehand!
 
 # Usage
 
 <!-- usage -->
 ```sh-session
-$ npm install -g hash-build
-$ hash-build COMMAND
+$ npm install -g docker-hash-build
+$ docker-hash-build COMMAND
 running command...
-$ hash-build (--version)
-hash-build/1.0.2 linux-x64 node-v20.3.0
-$ hash-build --help [COMMAND]
+$ docker-hash-build (--version)
+docker-hash-build/1.0.2 linux-x64 node-v20.3.0
+$ docker-hash-build --help [COMMAND]
 USAGE
-  $ hash-build COMMAND
+  $ docker-hash-build COMMAND
 ...
 ```
 <!-- usagestop -->
 
 I recommend using `npx` for convenience:
 ```sh-session
-$ npx hash-build build --help
+$ npx docker-hash-build build --help
 ```
 
 
@@ -52,16 +52,16 @@ $ npx hash-build build --help
 
 # Commands
 <!-- commands -->
-* [`hash-build build DIRECTORY`](#hash-build-build-directory)
-* [`hash-build help [COMMANDS]`](#hash-build-help-commands)
+* [`docker-hash-build build DIRECTORY`](#docker-hash-build-build-directory)
+* [`docker-hash-build help [COMMANDS]`](#docker-hash-build-help-commands)
 
-## `hash-build build DIRECTORY`
+## `docker-hash-build build DIRECTORY`
 
 Build a Docker image if the hash does not exist on the Docker registry.
 
 ```
 USAGE
-  $ hash-build build DIRECTORY -i <value> [-f <value>] [-r <value>] [-t <value>] [-p <value>] [-w <value>]
+  $ docker-hash-build build DIRECTORY -i <value> [-f <value>] [-r <value>] [-t <value>] [-p <value>] [-w <value>]
     [-W <value>] [-b <value>] [-u <value>] [-P <value>] [-l] [-P linux/amd64|linux/arm64|linux/arm/v7|linux/arm/v6]
 
 ARGUMENTS
@@ -95,34 +95,34 @@ DESCRIPTION
   Build a Docker image if the hash does not exist on the Docker registry.
 
 EXAMPLES
-  $ hash-build build . --image-name=kerren/hash-build --platforms=linux/amd64 --platforms=linux/arm64
+  $ docker-hash-build build . --image-name=kerren/docker-hash-build --platforms=linux/amd64 --platforms=linux/arm64
 
-  $ hash-build build ./path/to/repo --image-name=kerren/hash-build
+  $ docker-hash-build build ./path/to/repo --image-name=kerren/docker-hash-build
 
-  $ hash-build build . --image-name=kerren/hash-build --dockerfile-path=./Dockerfile.stable
+  $ docker-hash-build build . --image-name=kerren/docker-hash-build --dockerfile-path=./Dockerfile.stable
 
-  $ hash-build build . --image-name=kerren/hash-build --tag=staging
+  $ docker-hash-build build . --image-name=kerren/docker-hash-build --tag=staging
 
-  $ hash-build build . --image-name=kerren/hash-build --tag=stable --latest
+  $ docker-hash-build build . --image-name=kerren/docker-hash-build --tag=stable --latest
 
-  $ hash-build build . --image-name=kerren/hash-build --watch-file=./yarn.lock
+  $ docker-hash-build build . --image-name=kerren/docker-hash-build --watch-file=./yarn.lock
 
-  $ hash-build build . --image-name=kerren/hash-build --watch-directory=./src
+  $ docker-hash-build build . --image-name=kerren/docker-hash-build --watch-directory=./src
 
-  $ hash-build build . --image-name=kerren/hash-build --watch-directory=./src --watch-file=./yarn.lock
+  $ docker-hash-build build . --image-name=kerren/docker-hash-build --watch-directory=./src --watch-file=./yarn.lock
 
-  $ hash-build build . --image-name=kerren/hash-build --docker-username=username --docker-password=password --registry=registry.example.com
+  $ docker-hash-build build . --image-name=kerren/docker-hash-build --docker-username=username --docker-password=password --registry=registry.example.com
 ```
 
-_See code: [dist/commands/build.ts](https://github.com/entrostat/hash-build/blob/v1.0.2/dist/commands/build.ts)_
+_See code: [dist/commands/build.ts](https://github.com/entrostat/docker-hash-build/blob/v1.0.2/dist/commands/build.ts)_
 
-## `hash-build help [COMMANDS]`
+## `docker-hash-build help [COMMANDS]`
 
-Display help for hash-build.
+Display help for docker-hash-build.
 
 ```
 USAGE
-  $ hash-build help [COMMANDS] [-n]
+  $ docker-hash-build help [COMMANDS] [-n]
 
 ARGUMENTS
   COMMANDS  Command to show help for.
@@ -131,7 +131,7 @@ FLAGS
   -n, --nested-commands  Include all nested commands in the output.
 
 DESCRIPTION
-  Display help for hash-build.
+  Display help for docker-hash-build.
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.9/src/commands/help.ts)_
@@ -149,11 +149,11 @@ The hash that gets generated is stored on the Docker registry as an image tag. T
 
 ## Tagging
 
-Tags are used to modify the tag attached to an image. If you use the `--latest` flag, it will tag your image with the `latest` tag. So, for instance, this image would be tagged as `kerren/hash-build:latest` whenever it was built if I used that flag.
+Tags are used to modify the tag attached to an image. If you use the `--latest` flag, it will tag your image with the `latest` tag. So, for instance, this image would be tagged as `kerren/docker-hash-build:latest` whenever it was built if I used that flag.
 
-If you leave the `--tag` flag unset, it will tag the image with the latest version in your `package.json` which is assumed to be in the directory you're running the `cli` from (you can change this with the `--package` flag). So, for instance, if I've just run a release and the version in the `package.json` is `1.3.3`, it will tag the image as `kerren/hash-build:v1.3.3`.
+If you leave the `--tag` flag unset, it will tag the image with the latest version in your `package.json` which is assumed to be in the directory you're running the `cli` from (you can change this with the `--package` flag). So, for instance, if I've just run a release and the version in the `package.json` is `1.3.3`, it will tag the image as `kerren/docker-hash-build:v1.3.3`.
 
-The more exciting part is when you specify a tag(s). For instance, let's say you added two `--tag` flags, `staging` and `beta`. If the version in the `package.json` is `1.3.3`, it will create the following image tags on the registry, `kerren/hash-build:staging-v1.3.3` and `kerren/hash-build:beta-v1.3.3`. This is great for testing and setting up different environments. It means that you can use the same registry (ie. share the build hashes) and different tags per environment.
+The more exciting part is when you specify a tag(s). For instance, let's say you added two `--tag` flags, `staging` and `beta`. If the version in the `package.json` is `1.3.3`, it will create the following image tags on the registry, `kerren/docker-hash-build:staging-v1.3.3` and `kerren/docker-hash-build:beta-v1.3.3`. This is great for testing and setting up different environments. It means that you can use the same registry (ie. share the build hashes) and different tags per environment.
 
 ## Docker Credentials
 

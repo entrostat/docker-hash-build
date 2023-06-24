@@ -1,15 +1,15 @@
 {
-  "name": "hash-build",
+  "name": "docker-hash-build",
   "version": "1.0.2",
   "description": "A CLI that optimises Docker builds by allowing you to \"check\" if something needs to be built before triggering the build.",
   "author": "Kerren Ortlepp @Kerren-Entrostat",
   "bin": {
-    "hash-build": "./bin/run"
+    "docker-hash-build": "./bin/run"
   },
-  "homepage": "https://github.com/entrostat/hash-build",
+  "homepage": "https://github.com/entrostat/docker-hash-build",
   "license": "MIT",
   "main": "dist/index.js",
-  "repository": "entrostat/hash-build",
+  "repository": "entrostat/docker-hash-build",
   "files": [
     "/bin",
     "/dist",
@@ -49,8 +49,8 @@
     "typescript": "^5.1.3"
   },
   "oclif": {
-    "bin": "hash-build",
-    "dirname": "hash-build",
+    "bin": "docker-hash-build",
+    "dirname": "docker-hash-build",
     "commands": "./dist/commands",
     "plugins": [
       "@oclif/plugin-help"
@@ -72,7 +72,7 @@
   "engines": {
     "node": ">=12.0.0"
   },
-  "bugs": "https://github.com/entrostat/hash-build/issues",
+  "bugs": "https://github.com/entrostat/docker-hash-build/issues",
   "keywords": [
     "oclif",
     "cli",
