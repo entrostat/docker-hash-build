@@ -3,9 +3,13 @@ hash-build
 
 This CLI can be used to reduce the number of times you "build" something unnecessarily. Even with cache in Docker, there is still a build time and this would reduce that time by checking if anything has changed before triggering the `docker build` command.
 
+The `hash-build` CLI stores a calculated hash on your Docker registry to ensure that you don't rebuild images that are already there. You're hash your whole repo, a few directories, and a few files to control when a rebuild is needed.
+
+I use [regclient](https://github.com/regclient/regclient) to copy tags to quickly "retag" things that were built so you don't need to pull images down and push them back under the new tag. Thanks to the contributors or [regclient](https://github.com/regclient/regclient) for this incredible tool!
+
+Part of the reason I built this was to ensure that I could reduce the build time, while catering for `amd64` and `arm64` builds. So you'll see that you can select the platform(s) you would like to build your images for, and `docker buildx` is used to create the images. A previous tool I created [https://github.com/entrostat/entro-ci](https://github.com/entrostat/entro-ci) is able to perform a similar function but is written using basic `docker` functionality and does not cater for `arm64` builds.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-
 [![GitHub license](https://img.shields.io/github/license/oclif/hello-world)](https://github.com/oclif/hello-world/blob/main/LICENSE)
 
 <!-- toc -->
@@ -27,6 +31,12 @@ USAGE
 ...
 ```
 <!-- usagestop -->
+# Requirements
+In order to use this CLI, you must have:
+ - `docker` installed and accessible via the command line (and your user)
+ - `docker buildx` support
+ - (optional) [regclient](https://github.com/regclient/regclient) installed and accessible via the command line (and your user). If this is not installed, the `hash-build` cli will `curl` for the binary file and install it for you. This will only work on an `amd64` machine. If you have a different machine, installed `regcli` beforehand!
+
 # Commands
 <!-- commands -->
 * [`hash-build build DIRECTORY`](#hash-build-build-directory)
@@ -98,8 +108,29 @@ DESCRIPTION
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.9/src/commands/help.ts)_
 <!-- commandsstop -->
 
+# Detailed Explanation
+I've tried to make this `cli` as functional as possible. But that does mean it may come across as a bit complicated. So I thought I'd explain a few of the concepts in detail here so avoid confusion.
 
-# Getting Started
+## Hashing
+Hashing is run across the files and directories you specify. This is done using the `sha256` algorithm. It recursively runs over files and combines the hashes for each one and finally hashes the combination of hashes from all directories, files, etc.
+
+By default, the directory that you're triggering the build from is hashed. If you specify a file/folder or a combination to watch, it will no longer hash the build directory and will only look at the values you specified. This is useful if you have base `docker` images that you only want to rebuild when a `.lock` file (for example) changes.
+
+The hash that gets generated is stored on the Docker registry as an image tag. This means that if you run the build again, it will check the hash against the registry and if it's the same, it will not rebuild the image. This is useful for CI/CD pipelines where you don't want to rebuild the image if nothing has changed.
+
+## Tagging
+
+Tags are used to modify the tag attached to an image. If you use the `--latest` flag, it will tag your image with the `latest` tag. So, for instance, this image would be tagged as `kerren/hash-build:latest` whenever it was built if I used that flag.
+
+If you leave the `--tag` flag unset, it will tag the image with the latest version in your `package.json` which is assumed to be in the directory you're running the `cli` from (you can change this with the `--package` flag). So, for instance, if I've just run a release and the version in the `package.json` is `1.3.3`, it will tag the image as `kerren/hash-build:v1.3.3`.
+
+The more exciting part is when you specify a tag(s). For instance, let's say you added two `--tag` flags, `staging` and `beta`. If the version in the `package.json` is `1.3.3`, it will create the following image tags on the registry, `kerren/hash-build:staging-v1.3.3` and `kerren/hash-build:beta-v1.3.3`. This is great for testing and setting up different environments. It means that you can use the same registry (ie. share the build hashes) and different tags per environment.
+
+## Docker Credentials
+
+I recommend logging into your registry beforehand since this `cli` just calls the `docker` cli through terminal. However, if you would like to include the login credentials in the `cli` call (for example in CI/CD pipelines), you can specify the registry, username, and password.
+
+# Getting Started (Contributing)
 
 To develop on the project, clone it and run:
 
