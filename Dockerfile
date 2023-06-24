@@ -23,7 +23,6 @@ RUN yarn
 
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/bin ./bin
-COPY --from=builder /app/npm-shrinkwrap.json ./npm-shrinkwrap.json
 COPY --from=builder /app/oclif.manifest.json ./oclif.manifest.json
 
 RUN yarn link
