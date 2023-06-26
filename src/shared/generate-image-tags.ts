@@ -10,6 +10,7 @@ export async function generateImageTags(
 
   for (const tag of dockerBuildOptions.tag) {
     tags.push(`${tag}-${version}`);
+    tags.push(tag);
   }
 
   if (dockerBuildOptions.tag.length === 0) {
