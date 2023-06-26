@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.2.0](https://github.com/entrostat/docker-hash-build/compare/v3.1.1...v3.2.0) (2023-06-26)
+
+
+### Features
+
+* **tagging:** Add the base tag as something to copy the image to, so we don't just copy to 'tag-vX.X.X' but we also copy to 'tag' ([8580ef0](https://github.com/entrostat/docker-hash-build/commit/8580ef030ad5c14bcf7ec2fa26895d05a234993f))
+
 ### [3.1.1](https://github.com/entrostat/docker-hash-build/compare/v3.1.0...v3.1.1) (2023-06-24)
 
 
