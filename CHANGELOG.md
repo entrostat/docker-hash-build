@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [3.3.1](https://github.com/entrostat/docker-hash-build/compare/v3.3.0...v3.3.1) (2023-06-27)
+
+
+### Bug Fixes
+
+* **devops:** Downgraded to Node 16 for the builds ([b668a18](https://github.com/entrostat/docker-hash-build/commit/b668a18cca8508f7d985305bee1e6b218206d30c))
+
 ## [3.3.0](https://github.com/entrostat/docker-hash-build/compare/v3.2.0...v3.3.0) (2023-06-27)
 
 
