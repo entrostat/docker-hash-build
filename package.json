@@ -1,6 +1,6 @@
 {
   "name": "docker-hash-build",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "A CLI that optimises Docker builds by allowing you to \"check\" if something needs to be built before triggering the build.",
   "author": "Kerren Ortlepp @Kerren-Entrostat",
   "bin": {
