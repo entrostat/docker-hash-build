@@ -68,7 +68,8 @@
     "version": "oclif readme && git add README.md",
     "release": "npx entro-version release --main-branch-name=main --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the readme'\"",
     "release:alpha": "npx entro-version release --main-branch-name=main --commit-and-tag-version-flag='--prerelease alpha' --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the readme'\"",
-    "release:major": "npx entro-version release --main-branch-name=main --commit-and-tag-version-flag='--release-as major' --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the readme'\""
+    "release:major": "npx entro-version release --main-branch-name=main --commit-and-tag-version-flag='--release-as major' --during-release-post-hook=\"npm run prepack && git commit -am 'Updated the readme'\"",
+    "binaries": "oclif pack tarballs"
   },
   "engines": {
     "node": ">=12.0.0"
