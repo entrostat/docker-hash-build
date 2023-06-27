@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.3.0](https://github.com/entrostat/docker-hash-build/compare/v3.2.0...v3.3.0) (2023-06-27)
+
+
+### Features
+
+* **devops:** Added the ability to pack tarballs ([762cdc7](https://github.com/entrostat/docker-hash-build/commit/762cdc7e386664398dd2ec95f37ab00d651421b2))
+
 ## [3.2.0](https://github.com/entrostat/docker-hash-build/compare/v3.1.1...v3.2.0) (2023-06-26)
 
 
