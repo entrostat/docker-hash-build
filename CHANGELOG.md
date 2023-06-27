@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.0.0](https://github.com/entrostat/docker-hash-build/compare/v3.3.4...v4.0.0) (2023-06-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **behaviour:** Flags weren't being detected, it may be the Node version or Typescript version, so downgrading those
+
+### Bug Fixes
+
+* **behaviour:** Flags weren't being detected, it may be the Node version or Typescript version, so downgrading those ([f7d3ce2](https://github.com/entrostat/docker-hash-build/commit/f7d3ce21f8a69f2ed312072fde5100e984d8b3d1))
+
 ### [3.3.4](https://github.com/entrostat/docker-hash-build/compare/v3.3.3...v3.3.4) (2023-06-27)
 
 

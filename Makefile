@@ -3,7 +3,7 @@
 #===============================================================================
 
 init: ## Initialise the project requirements and dependencies
-	nodeenv .nodeenv --node=20.3.1 --prebuilt --force
+	nodeenv .nodeenv --node=16.20.1 --prebuilt --force
 	source .nodeenv/bin/activate && \
 	npm install -g yarn && \
 	yarn install
