@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [3.3.3](https://github.com/entrostat/docker-hash-build/compare/v3.3.2...v3.3.3) (2023-06-27)
+
+
+### Bug Fixes
+
+* **build:** Installed tslib as a main dependancy ([b875f9e](https://github.com/entrostat/docker-hash-build/commit/b875f9ebd3818f07ca55e7cba1e88c4affb590f7))
+
 ### [3.3.2](https://github.com/entrostat/docker-hash-build/compare/v3.3.1...v3.3.2) (2023-06-27)
 
 ### [3.3.1](https://github.com/entrostat/docker-hash-build/compare/v3.3.0...v3.3.1) (2023-06-27)
