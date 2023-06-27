@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [3.3.4](https://github.com/entrostat/docker-hash-build/compare/v3.3.3...v3.3.4) (2023-06-27)
+
+
+### Bug Fixes
+
+* **reflect:** Added reflect-metadata to the index.ts file ([c555073](https://github.com/entrostat/docker-hash-build/commit/c555073ba66f9b70a3de4241c6491f9a1268b283))
+
 ### [3.3.3](https://github.com/entrostat/docker-hash-build/compare/v3.3.2...v3.3.3) (2023-06-27)
 
 
